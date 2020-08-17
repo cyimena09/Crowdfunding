@@ -1,0 +1,76 @@
+<p> vérifier le token a chaque page </p>
+
+<p><input type="text" placeholder="rechercher"></p>
+
+<button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
+        disabled
+        placement="right"
+        ngbTooltip="Connectez-vous pour ajouter un projet"
+        routerLink="">Ajouter un projet</button>
+
+<button *ngIf="currentUser !== null && userCompany.userID != currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+        disabled
+        placement="right"
+        ngbTooltip="Vous devez enregistrer une société dans votre espace personnel avant d'ajouter un projet"
+        routerLink="">Ajouter un projet</button>
+
+
+
+<button *ngIf="currentUser !== null && userCompany.userID == currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+        routerLink="/add_project">Ajouter un projet</button>
+
+<div *ngFor="let project of projects; let i = index " class="list-group">
+  <a  class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h3 class="mb-1">{{project.name}} </h3>
+      <small class="text-muted">créé le : {{project.startDate | date: 'dd MMMM y':'UTC+4'}}</small>
+    </div>
+     <div class="d-flex w-100 justify-content-between">
+       <p class="mb-1">{{project.description}}</p>
+       <p>Etoile</p>
+     </div>
+
+
+
+      <div *ngFor="let amount of amounts">
+        <p *ngIf="project.projectID === amount.projectID">Récolté : {{amount.amount}} €</p>
+      </div>
+      <!-- barre de progression -->
+      <div class=" progression ">
+        <div class="align_with_progress-bar">0 €</div>
+        <div  class="progress col-11">
+
+          <div [ngClass]="{'progress-bar': true, ' bg-success': (pourcent[i] > 66.66),
+           ' bg-warning':  (pourcent[i] <= 66.66 && pourcent[i] > 33.33),
+           ' bg-danger':  (pourcent[i] <= 33.33)}"
+               role="progressbar" [ngStyle]="{'width': pourcent[i] + '%'}"><strong>{{pourcent[i]}} % des fonds</strong>
+          </div>
+        </div>
+      <div class="align_with_progress-bar">{{project.fundingMax}} €</div>
+    </div>
+    <!-- End barre de progression -->
+
+    <div class="separation">
+      <button class="btn btn-success" routerLink="/project_detail/{{project.projectID}}">Participer</button>
+    </div>
+
+
+  </a>
+</div>
+
+<button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
+        disabled
+        placement="right"
+        ngbTooltip="Connectez-vous pour ajouter un projet"
+        routerLink="">Ajouter un projet</button>
+
+<button *ngIf="currentUser !== null && userCompany.userID != currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+        disabled
+        placement="right"
+        ngbTooltip="Vous devez enregistrer une société dans votre espace personnel avant d'ajouter un projet"
+        routerLink="">Ajouter un projet</button>
+
+
+
+<button *ngIf="currentUser !== null && userCompany.userID == currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+        routerLink="/add_project">Ajouter un projet</button>

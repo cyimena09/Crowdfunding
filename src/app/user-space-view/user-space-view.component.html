@@ -1,0 +1,31 @@
+<h2>{{currentUser.FirstName}}</h2>
+<h2>{{currentUser.LastName}}</h2>
+
+<h5>Votre société</h5>
+<p>Nom : <strong>{{company.name}}</strong> </p>
+<p>Adresse : <strong>{{company.adress}}</strong></p>
+<p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
+
+
+<h5>Les projets que vous avez soumis</h5>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projects">
+      <th scope="row">1</th>
+      <td>{{project.name}}</td>
+      <td *ngIf="project.validation === 0" >En cours de validation</td>
+      <td *ngIf="project.validation === 1" >Validé</td>
+      <td *ngIf="project.validation === 2" class="bg-danger" >Refusé</td>
+    </tr>
+
+  </tbody>
+</table>

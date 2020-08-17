@@ -1,0 +1,32 @@
+.progression {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.progress{
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 20px;
+  font-size: 15px;
+
+}
+
+.align_with_progress-bar{
+  position: relative;
+  bottom: 3px;
+}
+
+.separation{
+  border-top: solid 1px #24315f;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+a{
+  margin-top: 1%;
+  border: solid #36245f 1px;
+}

@@ -1,0 +1,25 @@
+<h2>Historique des transactions des utilisateurs</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Projet</th>
+      <th scope="col">Montant</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let up of usersProject ; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{up.firstName}}</td>
+      <td>{{up.lastName}}</td>
+      <td>{{up.name}}</td>
+      <td>{{up.amount}} €</td>
+      <td>{{up.date | date: 'dd MMMM y HH:mm:ss':'UTC+4'}}</td>
+    </tr>
+
+  </tbody>
+</table>

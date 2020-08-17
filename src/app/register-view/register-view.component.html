@@ -1,0 +1,35 @@
+<div class="col-4">
+
+  <h2>Inscription</h2>
+  <form (ngSubmit)="onRegisterUser(f)" #f=ngForm>
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input class="form-control" type="text" id="firstName" name="firstName" ngModel>
+      </div>
+
+       <div class="form-group">
+         <label for="lastName">Nom</label>
+         <input class="form-control" type="text" id="lastName" name="lastName" ngModel>
+      </div>
+
+       <div class="form-group">
+         <label for="birthDate">Date de naissance</label>
+         <input class="form-control" type="text" id="birthDate" name="birthDate" ngModel>
+      </div>
+
+       <div class="form-group">
+         <label for="email">Email</label>
+         <input class="form-control" type="text" id="email" name="email" ngModel>
+      </div>
+
+       <div class="form-group">
+         <label for="password">Mot de passe</label>
+         <input class="form-control" type="text" id="password" name="password" ngModel>
+      </div>
+
+      <button class="btn btn-primary" type="submit">S'inscrire</button>
+  </form>
+
+</div>
+
+

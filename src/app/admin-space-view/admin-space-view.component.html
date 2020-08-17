@@ -1,0 +1,31 @@
+<h2>{{currentUser.FirstName}}</h2>
+<h2>{{currentUser.LastName}}</h2>
+
+<h5>Votre société</h5>
+<p>Nom : <strong>{{company.name}}</strong> </p>
+<p>Adresse : <strong>{{company.adress}}</strong></p>
+<p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
+
+<p>Liste des projets à valider</p>
+
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Date</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projectsToValidate ; let i = index" >
+      <th  scope="row">{{i +1}}</th>
+      <td >{{project.name}}</td>
+      <td  >Non traité</td>
+      <td >{{project.startDate | date: 'dd MMMM y HH:mm:ss':'UTC+4'}}</td>
+    </tr>
+
+  </tbody>
+</table>

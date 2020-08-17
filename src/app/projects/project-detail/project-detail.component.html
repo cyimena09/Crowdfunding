@@ -1,0 +1,15 @@
+<div class="col-4">
+  <h2>{{project.name}}</h2>
+<p>{{project.description}}</p>
+
+<form (ngSubmit)="onFinanceProject(f)" #f=ngForm>
+  <div class="form-group">
+    <label for="amount">Montant</label>
+    <input class="form-control" type="text" id="amount" name="amount" ngModel>
+  </div>
+  <button class="btn btn-success">Envoyer</button>
+</form>
+
+
+</div>
+
