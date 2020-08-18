@@ -5,9 +5,10 @@
 <form (ngSubmit)="onFinanceProject(f)" #f=ngForm>
   <div class="form-group">
     <label for="amount">Montant</label>
-    <input class="form-control" type="text" id="amount" name="amount" ngModel>
+    <input class="form-control" type="number" id="amount" name="amount" ngModel>
   </div>
   <button class="btn btn-success">Envoyer</button>
+  <button class="btn btn-outline-secondary ml-4" routerLink="/home">Retour</button>
 </form>
 
 

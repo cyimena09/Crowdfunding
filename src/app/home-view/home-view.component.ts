@@ -14,25 +14,25 @@ export class HomeViewComponent implements OnInit {
 
   currentUser;
   userCompany: any = [];
-  projects;
-  amounts;
+  projects: any = [];
+  amounts:any = [];
   pourcent = []
 
   constructor(private userService: UserService,
-              private projectService: ProjectService, private userProjectService: UserProjectService,
-              private authService: AuthService, private companyService: CompanyService) { }
+              private projectService: ProjectService,
+              private userProjectService: UserProjectService,
+              private authService: AuthService,
+              private companyService: CompanyService) { }
 
 
   ngOnInit(): void {
     this.authService.userSubject.subscribe(
       (data)=> {this.currentUser = data;}
     );
-    this.getUserCompany()
-
-
+    this.getUserCompany();
     this.projectService.getProjects();
     this.projectService.projectSubject.subscribe(
-      (data) => {this.projects = data;this.getAmount();}
+      (data) => {this.projects = data; this.getAmount();}
     );
 
   }
@@ -47,26 +47,26 @@ export class HomeViewComponent implements OnInit {
 
   getAmount(){
     return this.userProjectService.getAmount().subscribe(
-      (data) => {this.amounts = data; this.pourcent = this.getPourcent(); }
+      (data) => {this.amounts = data; this.getPourcent();}
     );
   }
 
   getPourcent(){
-    let table = []
     let pc = 0
-    const nb = this.projects.length;
-    for(let i = 0; i< nb; i++){
-      for (let j =0; j< nb; j++){
+    let nbAmounts = this.amounts.length;
+    let nbProject = this.projects.length;
+    for(let i = 0; i< nbProject; i++){
+      for (let j =0; j< nbAmounts; j++){
         if(this.projects[i].projectID === this.amounts[j].projectID){
+          this.projects[i].amount = this.amounts[j].amount
           pc = (this.amounts[j].amount / this.projects[i].fundingMax) * 100
           //on converti à 1 décimal
-          pc = Math.round(pc * 10) /10
-          table.push(pc)
+          pc = Math.round(pc * 10) /10;
+          this.projects[i].pourcent = pc
         }
       }
     }
-    return table;
-  }
 
+  }
 
 }

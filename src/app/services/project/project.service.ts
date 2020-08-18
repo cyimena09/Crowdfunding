@@ -23,16 +23,12 @@ export class ProjectService {
     );
   }
 
-  getProjectsToValidate(){
-    let table = [];
-    const nb = this.projects.length
-    for(let i = 0; i < nb; i++){
-      if(this.projects[i].validation !== 1){
-          table.push(this.projects[i])
-        }
-      }
-    return table;
+  updateProject(id, project){
+    return this.httpClient.put(this.apiURL + id, project).subscribe(
+      () => { console.log(project)}
+    )
   }
+
 
   getProject(id){
     return this.httpClient.get(this.apiURL + id);
@@ -52,8 +48,8 @@ export class ProjectService {
 
   addProject(newProject){
     return this.httpClient.post(this.apiURL, newProject).subscribe(
-      (data) => {
-        this.projects.push(newProject); this.projectSubject.next(this.projects);
+      () => {
+        this.getProjects();
         if(Number(this.authService.currentUser.Role) === 1){
           this.router.navigate(['/admin_space'])
         }

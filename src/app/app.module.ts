@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddProjectViewComponent } from './add-project-view/add-project-view.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TransactionHistoricComponent } from './transaction-historic/transaction-historic.component';
+import { ProjectStatusComponent } from './projects/project-status/project-status.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { TransactionHistoricComponent } from './transaction-historic/transaction
     AddProjectViewComponent,
     ProjectDetailComponent,
     UserSpaceViewComponent,
-    TransactionHistoricComponent
+    TransactionHistoricComponent,
+    ProjectStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { TransactionHistoricComponent } from './transaction-historic/transaction
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: "fr-Fr" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,11 +19,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let project of projects">
-      <th scope="row">1</th>
+    <tr *ngFor="let project of projects; let i = index">
+      <th scope="row">{{i}}</th>
       <td>{{project.name}}</td>
       <td *ngIf="project.validation === 0" >En cours de validation</td>
-      <td *ngIf="project.validation === 1" >Validé</td>
+      <td *ngIf="project.validation === 1" class="bg-success">Validé</td>
       <td *ngIf="project.validation === 2" class="bg-danger" >Refusé</td>
     </tr>
 

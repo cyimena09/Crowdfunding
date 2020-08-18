@@ -14,13 +14,13 @@ import {TransactionHistoricComponent} from "./transaction-historic/transaction-h
 
 const routes: Routes = [
   {path: 'home', component: HomeViewComponent},
-  {path: 'project_detail/:id', component: ProjectDetailComponent},
+  {path: 'project_detail/:id', canActivate: [AuthGuardService], component: ProjectDetailComponent},
   {path: 'login', component: LoginViewComponent},
   {path: 'register', component: RegisterViewComponent},
   {path: 'add_project', canActivate: [AuthGuardService], component: AddProjectViewComponent},
-  {path : 'user_space', canActivate: [AuthGuardService], component: UserSpaceViewComponent},
+  {path: 'user_space', canActivate: [AuthGuardService], component: UserSpaceViewComponent},
   {path: 'admin_space', canActivate: [AuthGuardService], component: AdminSpaceViewComponent},
-  {path: 'historic_transaction', component: TransactionHistoricComponent},
+  {path: 'historic_transaction', canActivate: [AuthGuardService], component: TransactionHistoricComponent},
   {path: 'not_found', component: NotFoundViewComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: 'not_found'}

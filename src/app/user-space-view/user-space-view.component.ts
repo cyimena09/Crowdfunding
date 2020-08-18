@@ -19,13 +19,29 @@ export class UserSpaceViewComponent implements OnInit {
   ngOnInit(): void {
     this.companyService.getUserCompany().subscribe(
       (data) => {this.company = data}
-    )
+    );
 
     this.authService.userSubject.subscribe(
       (data)=> {this.currentUser = data}
     );
     this.projects = this.projectService.getProjectsByUser();
+    this.projectsByUserSubscription();
   }
 
+   projectsByUserSubscription(){
+     let table = [];
+    let userID = Number(this.authService.currentUser.UserID);
+    this.projectService.projectSubject.subscribe(
+      (data: any) => {
+        const nb = data.length;
+        for(let i = 0; i< nb; i++){
+          if(data[i].creatorID === userID) {
+            table.push(data[i])
+          }
+        }
+        this.projects = table
+      });
+    return table;
+  }
 
 }

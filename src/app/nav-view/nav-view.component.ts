@@ -8,7 +8,7 @@ import {AuthService} from "../services/auth/auth.service";
 })
 export class NavViewComponent implements OnInit {
 
-  currentUser
+  currentUser;
 
   constructor(private authService: AuthService) { }
 

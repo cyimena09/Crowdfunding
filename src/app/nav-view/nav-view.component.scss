@@ -1,0 +1,29 @@
+
+.navigation{
+  width:1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.user{
+  width: 500px;
+    margin-right: 25%;
+}
+
+.user a {
+  margin-right: 5%;
+}
+.connexion{
+  width: 200px;
+}
+
+#connecter{
+  margin-right: 10%;
+}
+
+#identity{
+  font-size: 1.3em;
+}
+

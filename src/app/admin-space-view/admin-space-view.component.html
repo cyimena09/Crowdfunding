@@ -6,8 +6,9 @@
 <p>Adresse : <strong>{{company.adress}}</strong></p>
 <p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
 
-<p>Liste des projets à valider</p>
+<button class="btn btn-dark mt-4 mb-2" (click)="onNavigate()">Transactions</button>
 
+<h2>Liste des projects</h2>
   <table class="table table-striped">
   <thead>
     <tr>
@@ -15,17 +16,23 @@
       <th scope="col">Nom</th>
       <th scope="col">Auteur</th>
       <th scope="col">Statut</th>
-      <th scope="col">Date</th>
+      <th scope="col">Créé le</th>
 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let project of projectsToValidate ; let i = index" >
+    <tr *ngFor="let project of projects ; let i = index" >
       <th  scope="row">{{i +1}}</th>
-      <td >{{project.name}}</td>
-      <td  >Non traité</td>
-      <td >{{project.startDate | date: 'dd MMMM y HH:mm:ss':'UTC+4'}}</td>
+      <td>{{project.name}}</td>
+      <td>{{project.creatorFirstName}} {{project.creatorLastName}}</td>
+
+      <td> <app-project-status
+        [project]="project"></app-project-status> </td>
+      <td >{{project.startDate | date: 'dd MMMM y':'UTC+4'}}</td>
     </tr>
 
   </tbody>
 </table>
+
+  <router-outlet name="secondary"></router-outlet>
+

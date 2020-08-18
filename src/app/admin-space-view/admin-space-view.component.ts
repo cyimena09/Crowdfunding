@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProjectService} from "../services/project/project.service";
 import {AuthService} from "../services/auth/auth.service";
 import {CompanyService} from "../services/company/company.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-space-view',
@@ -11,11 +12,11 @@ import {CompanyService} from "../services/company/company.service";
 export class AdminSpaceViewComponent implements OnInit {
   currentUser
   company: any = []
-  projects
+  projects;
   yourProjects;
-  projectsToValidate;
 
-  constructor(private projectService: ProjectService, private authService: AuthService, private companyService: CompanyService) { }
+  constructor(private projectService: ProjectService, private authService: AuthService,
+              private companyService: CompanyService, private router: Router) { }
 
   ngOnInit(): void {
     this.companyService.getUserCompany().subscribe(
@@ -23,11 +24,17 @@ export class AdminSpaceViewComponent implements OnInit {
     );
     this.projects = this.projectService.projects;
 
+    this.projectService.projectSubject.subscribe(
+      (data) => {this.projects = data; console.log("ocucou", this.projects)}
+    );
     this.authService.userSubject.subscribe(
       (data)=> {this.currentUser = data}
     );
     this.yourProjects = this.projectService.getProjectsByUser();
-    this.projectsToValidate = this.projectService.getProjectsToValidate();
+  }
+
+  onNavigate(){
+    this.router.navigate(['historic_transaction'])
   }
 
 }
