@@ -3,6 +3,7 @@ import {ProjectService} from "../services/project/project.service";
 import {AuthService} from "../services/auth/auth.service";
 import {CompanyService} from "../services/company/company.service";
 import {Router} from "@angular/router";
+import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-admin-space-view',
@@ -15,7 +16,7 @@ export class AdminSpaceViewComponent implements OnInit {
   projects;
   yourProjects;
 
-  constructor(private projectService: ProjectService, private authService: AuthService,
+  constructor(private projectService: ProjectService, private authService: AuthService, private userService: UserService,
               private companyService: CompanyService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class AdminSpaceViewComponent implements OnInit {
     this.projects = this.projectService.projects;
 
     this.projectService.projectSubject.subscribe(
-      (data) => {this.projects = data; console.log("ocucou", this.projects)}
+      (data) => {this.projects = data;}
     );
     this.authService.userSubject.subscribe(
       (data)=> {this.currentUser = data}
@@ -35,6 +36,10 @@ export class AdminSpaceViewComponent implements OnInit {
 
   onNavigate(){
     this.router.navigate(['historic_transaction'])
+  }
+
+  onRemoveAccount(){
+    return this.userService.RemoveAccount(this.currentUser.UserID);
   }
 
 }

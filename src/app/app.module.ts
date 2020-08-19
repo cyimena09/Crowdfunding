@@ -20,6 +20,8 @@ import { AddProjectViewComponent } from './add-project-view/add-project-view.com
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TransactionHistoricComponent } from './transaction-historic/transaction-historic.component';
 import { ProjectStatusComponent } from './projects/project-status/project-status.component';
+import { MessagerieComponent } from './messagerie/messagerie.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ProjectStatusComponent } from './projects/project-status/project-status
     UserSpaceViewComponent,
     TransactionHistoricComponent,
     ProjectStatusComponent,
+    MessagerieComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

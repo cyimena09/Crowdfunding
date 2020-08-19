@@ -4,6 +4,7 @@ import {ProjectService} from "../services/project/project.service";
 import {AuthService} from "../services/auth/auth.service";
 import {CompanyService} from "../services/company/company.service";
 import {UserProjectService} from "../services/user-project/user-project.service";
+import {MessagerieService} from "../services/messagerie/messagerie.service";
 
 @Component({
   selector: 'app-home-view',
@@ -22,7 +23,8 @@ export class HomeViewComponent implements OnInit {
               private projectService: ProjectService,
               private userProjectService: UserProjectService,
               private authService: AuthService,
-              private companyService: CompanyService) { }
+              private companyService: CompanyService,
+              private messageService: MessagerieService) { }
 
 
   ngOnInit(): void {
@@ -66,7 +68,10 @@ export class HomeViewComponent implements OnInit {
         }
       }
     }
+  }
 
+  onFuck(){
+    return this.messageService.updateMessage(2,2,2)
   }
 
 }

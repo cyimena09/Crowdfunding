@@ -1,0 +1,41 @@
+
+.personal_info{
+  display: flex;
+  flex-direction: row;
+  border: solid silver 1px;
+  border-radius: 5px;
+}
+
+.profil_and_form{
+  display: flex;
+  flex-direction: row;
+}
+
+.profil{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#profil{
+  border-right: solid silver 1px;
+}
+
+.society_and_form{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.content{
+  width: 50%;
+}
+
+.society{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.banner{
+  padding-left: 15px;
+  width: 100%;
+}

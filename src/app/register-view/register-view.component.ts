@@ -22,7 +22,7 @@ export class RegisterViewComponent implements OnInit {
     const email = form.value['email'];
     const password = form.value['password'];
     const newUser = new User(firstName, lastName, birthDate, email, password, 0, 1);
-    this.userService.registerUser(newUser);
+    this.userService.createUser(newUser);
   }
 
 }

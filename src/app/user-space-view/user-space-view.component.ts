@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProjectService} from "../services/project/project.service";
 import {AuthService} from "../services/auth/auth.service";
 import {CompanyService} from "../services/company/company.service";
+import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-user-space-view',
@@ -13,8 +14,10 @@ export class UserSpaceViewComponent implements OnInit {
   currentUser;
   company: any = [];
   projects;
+  update = false
 
-  constructor(private projectService: ProjectService, private authService: AuthService, private companyService: CompanyService) { }
+  constructor(private projectService: ProjectService, private authService: AuthService,
+              private companyService: CompanyService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.companyService.getUserCompany().subscribe(
@@ -44,4 +47,21 @@ export class UserSpaceViewComponent implements OnInit {
     return table;
   }
 
+  onRemoveAccount(){
+    return this.userService.RemoveAccount(this.currentUser.UserID);
+  }
+
+  onRemoveProject(id){
+    return this.projectService.RemoveProject(id)
+  }
+
+  onUpdateUser() {
+    if (!this.update){
+      this.update = true;
+    }
+    else if (this.update){
+      //this.userService.updateUser(this.currentUser).subscribe();
+      this.update = false;
+    }
+  }
 }

@@ -1,6 +1,7 @@
 <p> vérifier le token a chaque page </p>
 
 <p><input type="text" placeholder="rechercher"></p>
+<button (click)="onFuck()">Update</button>
 
 <button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
         disabled
@@ -20,10 +21,11 @@
         routerLink="/add_project">Ajouter un projet</button>
 
 <div *ngFor="let project of projects; let i = index " class="list-group">
-  <a  class="list-group-item list-group-item-action flex-column align-items-start">
+  <div *ngIf="project.validation === 1">
+    <a  class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h3 class="mb-1">{{project.name}} </h3>
-      <small class="text-muted">créé le : {{project.startDate | date: 'dd MMMM y':'UTC+4'}}</small>
+      <small class="text-muted">créé le : {{project.startDate | date: 'dd MMMM y'}}</small>
     </div>
      <div class="d-flex w-100 justify-content-between">
        <p class="mb-1">{{project.description}}</p>
@@ -46,7 +48,7 @@
           </div>
 
           <div *ngIf="project.pourcent > 0" [ngClass]="{'progress-bar': true, ' bg-success': (project.pourcent > 66.66),
-           ' bg-warning':  (project.pourcent <= 66.66 && pourcent[i] > 33.33),
+           ' bg-warning':  (project.pourcent <= 66.66 && project.pourcent > 33.33),
            ' bg-danger':  (project.pourcent <= 33.33)}"
                role="progressbar" [ngStyle]="{'width': project.pourcent + '%'}"><strong>{{project.pourcent}} %</strong>
           </div>
@@ -58,9 +60,10 @@
     <div class="separation">
       <button class="btn btn-success" routerLink="/project_detail/{{project.projectID}}">Participer</button>
     </div>
-
-
   </a>
+
+  </div>
+
 </div>
 
 <button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"

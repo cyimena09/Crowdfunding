@@ -29,6 +29,12 @@ export class ProjectService {
     )
   }
 
+  RemoveProject(projectid){
+    return this.httpClient.delete(this.apiURL + projectid).subscribe(
+      (data) => {this.projects.delete(projectid)} // ligne fausse chercher l'index
+    );
+  }
+
 
   getProject(id){
     return this.httpClient.get(this.apiURL + id);

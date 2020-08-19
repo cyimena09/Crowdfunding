@@ -18,14 +18,16 @@
 
           <div class="user">
             <a *ngIf="currentUser != null" style="color: white" id="identity">Bienvenue <strong>{{currentUser.FirstName}}</strong></a>
-            <a *ngIf="currentUser != null && currentUser.Role == 1" style="color: white" routerLink="/admin_space">Espace Admin</a>
-            <a *ngIf="currentUser != null && currentUser.Role == 0" style="color: white" routerLink="/user_space">Votre espace personnel</a>
+            <a *ngIf="currentUser != null && currentUser.Role == 1" routerLink="/admin_space">Espace Admin</a>
+            <a *ngIf="currentUser != null && currentUser.Role == 0" routerLink="/user_space">Votre espace personnel</a>
+            <a *ngIf="currentUser != null" routerLink="/messagerie" class="icone fas fa-comment-alt" (click)="onRemoveNotif()">
+              <span *ngIf="notif > 0" class="notif">{{notif}}</span></a>
           </div>
 
           <div class="connexion">
             <a id="connecter" *ngIf="currentUser === null" style="color: white" routerLink="/login">Se connecter</a>
             <a id="inscription" *ngIf="currentUser === null" style="color: white" routerLink="/register">S'inscrire</a>
-            <a id="deconnection" *ngIf="currentUser !== null" style="color: white" routerLink="/home" (click)="onLogout()">Se déconnecter</a>
+            <a id="deconnection" *ngIf="currentUser != null" style="color: white" routerLink="/home" (click)="onLogout()">Se déconnecter</a>
           </div>
 
     </div>

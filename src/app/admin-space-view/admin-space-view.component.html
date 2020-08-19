@@ -1,12 +1,13 @@
 <h2>{{currentUser.FirstName}}</h2>
 <h2>{{currentUser.LastName}}</h2>
 
-<h5>Votre société</h5>
-<p>Nom : <strong>{{company.name}}</strong> </p>
+
+<p>Nom de la société: <strong>{{company.name}}</strong> </p>
 <p>Adresse : <strong>{{company.adress}}</strong></p>
 <p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
 
 <button class="btn btn-dark mt-4 mb-2" (click)="onNavigate()">Transactions</button>
+<button class="btn btn-danger mt-4 mb-2 ml-2" (click)="onRemoveAccount()">Transactions</button>
 
 <h2>Liste des projects</h2>
   <table class="table table-striped">

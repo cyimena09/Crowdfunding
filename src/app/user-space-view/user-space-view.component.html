@@ -1,14 +1,61 @@
-<h2>{{currentUser.FirstName}}</h2>
-<h2>{{currentUser.LastName}}</h2>
 
-<h5>Votre société</h5>
-<p>Nom : <strong>{{company.name}}</strong> </p>
-<p>Adresse : <strong>{{company.adress}}</strong></p>
-<p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
+<div class="personal_info">
+
+  <div id="profil" class="content">
+    <div class="banner">
+      <h3>Vos données personnelles</h3>
+    </div>
+
+    <div class="profil_and_form">
+
+      <div class="profil">
+        <h5>{{currentUser.FirstName}}</h5>
+        <h5>{{currentUser.LastName}}</h5>
+        <p>Naissance : {{currentUser.BirthDate}}</p>
+        <p>Email : {{currentUser.Email}}</p>
+      </div>
+
+      <div class="profil_form mr-4">
+        <form>
+          <input *ngIf="update" class="form-control" name="FirstName" type="text"  [(ngModel)]="currentUser.FirstName">
+          <input *ngIf="update" class="form-control" name="LastName" type="text" placeholder="Nom" [(ngModel)]="currentUser.LastName">
+          <input *ngIf="update" class="form-control" name="BirthDate" type="text" placeholder="Nom" [(ngModel)]="currentUser.BirthDate">
+          <input *ngIf="update" class="form-control" name="Email" type="text" placeholder="Nom" [(ngModel)]="currentUser.Email">
+        </form>
+      </div>
+    </div>
+  </div>
 
 
-<h5>Les projets que vous avez soumis</h5>
+  <div class="content">
+    <div class="banner">
+      <h3>Information sur la société</h3>
+    </div>
 
+    <div class="society_and_form">
+      <div class="society">
+        <p>Nom de la société: <strong>{{company.name}}</strong> </p>
+        <p>Adresse : <strong>{{company.adress}}</strong></p>
+        <p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
+      </div>
+
+      <div class="society_form mr-4">
+        <form>
+          <input *ngIf="update" class="form-control" type="text" name="name" placeholder="Nom" [(ngModel)]="company.name">
+          <input *ngIf="update" class="form-control" type="text" name="adress" placeholder="Adresse" [(ngModel)]="company.adress">
+          <input *ngIf="update" class="form-control" type="text" name="tvaNumber" placeholder="Numéro de tva" [(ngModel)]="company.tvaNumber">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button *ngIf="!update" class="btn btn-primary mt-2 mb-4" (click)="onUpdateUser()">Modifier</button>
+<button *ngIf="update" class="btn btn-primary mt-2 mb-4" (click)="onUpdateUser()">Valider</button>
+
+
+
+<h3>Vos projets</h3>
 
 <table class="table table-striped">
   <thead>
@@ -16,16 +63,22 @@
       <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Statut</th>
+      <th scope="col"></th>
+
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let project of projects; let i = index">
-      <th scope="row">{{i}}</th>
+      <th scope="row">{{i + 1}}</th>
       <td>{{project.name}}</td>
       <td *ngIf="project.validation === 0" >En cours de validation</td>
       <td *ngIf="project.validation === 1" class="bg-success">Validé</td>
       <td *ngIf="project.validation === 2" class="bg-danger" >Refusé</td>
+      <td><button class="btn btn-primary btn-sm mr-3">Détails</button>
+        <button class="btn btn-danger btn-sm" (click)="onRemoveProject(project.projectID)">Supprimer</button></td>
     </tr>
 
   </tbody>
 </table>
+
+<button class="btn btn-danger" (click)="onRemoveAccount()">Supprimer votre compte</button>
