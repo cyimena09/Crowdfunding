@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Login} from "../models/login";
 import {AuthService} from "../services/auth/auth.service";
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login-view',
@@ -16,12 +17,12 @@ export class LoginViewComponent implements OnInit {
   }
 
   onLogin(form: NgForm){
-    const firstName = form.value['firstName'];
-    const lastName = form.value['lastName'];
+    const email = form.value['email'];
+    const password = form.value['password'];
     const logger = new Login();
-    logger.firstName = firstName;
-    logger.lastName = lastName;
-    this.authService.login(logger)
-    }
+    logger.email= email;
+    logger.password = password;
+    this.authService.login(logger);
+  }
 
 }

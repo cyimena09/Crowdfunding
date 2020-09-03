@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class ProjectService {
   projects: any = [];
-  apiURL = 'https://localhost:44370/api/projects/';
+  apiURL = 'https://apicrowdfunding.emile404.be/api/projects/';
   projectSubject = new Subject();
 
   constructor(private httpClient: HttpClient, private authService: AuthService, private router: Router) {

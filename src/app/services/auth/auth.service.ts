@@ -9,13 +9,26 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser
-  userSubject = new BehaviorSubject(null)
+  currentUser;
+  tokenString = localStorage.getItem('token')
+  userSubject;
 
-  logURL = 'https://localhost:44370/api/auth/login';
+  logURL = 'https://apicrowdfunding.emile404.be/api/auth/Login';
 
   constructor(private httpClient: HttpClient, private router: Router) {
+
+    if (this.tokenString != null){
+      this.userSubject =  new BehaviorSubject(jwt_decode(this.tokenString))
+    }
+    else {
+      this.userSubject = new BehaviorSubject(null)
+    }
+
+    this.userSubject.subscribe(
+      (data) => {this.currentUser = data}
+    );
   }
+
 
   login(logger){
     this.httpClient.post(this.logURL, logger, {responseType: 'text'}).subscribe(
@@ -24,19 +37,20 @@ export class AuthService {
         console.log(jwt_decode(tokenString)); this.userSubject.next(jwt_decode(tokenString)); this.getCurrentUser();
         this.router.navigate(['/home']);
       },
-      (error) => {console.log("Il y a eu une erreur", error)}
+      (error) => {error}
     );
-
   }
 
   logout(){
-    localStorage.removeItem('id_token');
-    this.userSubject.next(null)
+    localStorage.removeItem('token');
+    this.userSubject.next(null);
+    this.router.navigate(['/login']);
   }
 
   getCurrentUser(){
     this.userSubject.subscribe(
-      (data) => {this.currentUser = data}
+      (data) => {this.currentUser = data;
+      }
     )
   }
 }

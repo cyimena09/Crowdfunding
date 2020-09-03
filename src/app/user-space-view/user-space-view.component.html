@@ -34,9 +34,9 @@
 
     <div class="society_and_form">
       <div class="society">
-        <p>Nom de la société: <strong>{{company.name}}</strong> </p>
+        <p>Nom de la société : <strong>{{company.name}}</strong> </p>
         <p>Adresse : <strong>{{company.adress}}</strong></p>
-        <p>Numéro de TVA : <strong>{{company.tvaNumber}}</strong></p>
+        <p>Numéro de TVA : <strong *ngIf="company.tvaNumber != 0">{{company.tvaNumber}}</strong></p>
       </div>
 
       <div class="society_form mr-4">

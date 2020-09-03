@@ -1,7 +1,3 @@
-<p> vérifier le token a chaque page </p>
-
-<p><input type="text" placeholder="rechercher"></p>
-<button (click)="onFuck()">Update</button>
 
 <button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
         disabled
@@ -15,69 +11,79 @@
         ngbTooltip="Vous devez enregistrer une société dans votre espace personnel avant d'ajouter un projet"
         routerLink="">Ajouter un projet</button>
 
-
-
 <button *ngIf="currentUser !== null && userCompany.userID == currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
         routerLink="/add_project">Ajouter un projet</button>
 
-<div *ngFor="let project of projects; let i = index " class="list-group">
-  <div *ngIf="project.validation === 1">
-    <a  class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h3 class="mb-1">{{project.name}} </h3>
-      <small class="text-muted">créé le : {{project.startDate | date: 'dd MMMM y'}}</small>
-    </div>
-     <div class="d-flex w-100 justify-content-between">
-       <p class="mb-1">{{project.description}}</p>
-     </div>
+
+<div class="content">
 
 
-      <div >
-        <p *ngIf="project.amount > 0" >Récolté : <strong>{{project.amount}} €</strong></p>
-        <p *ngIf="project.amount == null" >Récolté : <strong>0 €</strong></p>
+
+
+    <div *ngFor="let project of projects; let i = index " class="group-project list-group">
+      <div *ngIf="project.validation === 1" class="project">
+        <a  class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1 mt-4">{{project.name}} </h4>
+          <small class="text-muted">créé le : {{project.startDate | date: 'dd MMMM y'}}</small>
+        </div>
+         <div class="d-flex w-100 justify-content-between">
+           <p  class="description mb-1">{{project.description}}</p>
+
+         </div>
+
+
+          <div >
+            <p *ngIf="project.amount > 0" >Récolté : <strong>{{project.amount}} €</strong></p>
+            <p *ngIf="project.amount == null" >Récolté : <strong>0 €</strong></p>
+
+          </div>
+
+          <!-- barre de progression -->
+          <div class=" progression ">
+            <div class="align_with_progress-bar">0 €</div>
+            <div  class="progress col-11">
+
+              <div  [ngClass]="{'progress-bar': true }"
+                   role="progressbar" [ngStyle]="{'width':  '0 %'}"><strong></strong>
+              </div>
+
+              <div *ngIf="project.pourcent > 0" [ngClass]="{'progress-bar': true, ' bg-success': (project.pourcent > 66.66),
+               ' bg-warning':  (project.pourcent <= 66.66 && project.pourcent > 33.33),
+               ' bg-danger':  (project.pourcent <= 33.33)}"
+                   role="progressbar" [ngStyle]="{'width': project.pourcent + '%'}"><strong>{{project.pourcent}} %</strong>
+              </div>
+            </div>
+          <div class="align_with_progress-bar">{{project.fundingMax}} €</div>
+        </div>
+        <!-- End barre de progression -->
+
+        <div class="separation">
+          <button class="btn btn-success" routerLink="/project-payement/{{project.projectID}}">Participer</button>
+          <button routerLink="/project-detail/{{project.projectID}}" class="btn btn-info ml-2">Détails</button>
+        </div>
+      </a>
 
       </div>
 
-      <!-- barre de progression -->
-      <div class=" progression ">
-        <div class="align_with_progress-bar">0 €</div>
-        <div  class="progress col-11">
-
-          <div  [ngClass]="{'progress-bar': true }"
-               role="progressbar" [ngStyle]="{'width':  '0 %'}"><strong></strong>
-          </div>
-
-          <div *ngIf="project.pourcent > 0" [ngClass]="{'progress-bar': true, ' bg-success': (project.pourcent > 66.66),
-           ' bg-warning':  (project.pourcent <= 66.66 && project.pourcent > 33.33),
-           ' bg-danger':  (project.pourcent <= 33.33)}"
-               role="progressbar" [ngStyle]="{'width': project.pourcent + '%'}"><strong>{{project.pourcent}} %</strong>
-          </div>
-        </div>
-      <div class="align_with_progress-bar">{{project.fundingMax}} €</div>
     </div>
-    <!-- End barre de progression -->
 
-    <div class="separation">
-      <button class="btn btn-success" routerLink="/project_detail/{{project.projectID}}">Participer</button>
-    </div>
-  </a>
-
-  </div>
 
 </div>
+    <button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
+            disabled
+            placement="right"
+            ngbTooltip="Connectez-vous pour ajouter un projet"
+            routerLink="">Ajouter un projet</button>
 
-<button *ngIf="currentUser == null" class="btn btn-outline-secondary mt-2 mb-3"
-        disabled
-        placement="right"
-        ngbTooltip="Connectez-vous pour ajouter un projet"
-        routerLink="">Ajouter un projet</button>
-
-<button *ngIf="currentUser !== null && userCompany.userID != currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
-        disabled
-        placement="right"
-        ngbTooltip="Vous devez enregistrer une société dans votre espace personnel avant d'ajouter un projet"
-        routerLink="">Ajouter un projet</button>
+    <button *ngIf="currentUser !== null && userCompany.userID != currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+            disabled
+            placement="right"
+            ngbTooltip="Vous devez enregistrer une société dans votre espace personnel avant d'ajouter un projet"
+            routerLink="">Ajouter un projet</button>
 
 
-<button *ngIf="currentUser !== null && userCompany.userID == currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
-        routerLink="/add_project">Ajouter un projet</button>
+    <button *ngIf="currentUser !== null && userCompany.userID == currentUser.UserID" class="btn btn-outline-secondary mt-2 mb-3"
+            routerLink="/add_project">Ajouter un projet</button>
+
+

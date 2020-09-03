@@ -1,16 +1,14 @@
-<div class="col-4">
-  <h2>{{project.name}}</h2>
-<p>{{project.description}}</p>
+<div class="content">
 
-<form (ngSubmit)="onFinanceProject(f)" #f=ngForm>
-  <div class="form-group">
-    <label for="amount">Montant</label>
-    <input class="form-control" type="number" id="amount" name="amount" ngModel>
+  <div class="col-4">
+    <h2>{{project.name}}</h2>
+    <p>{{project.description}}</p>
   </div>
-  <button class="btn btn-success">Envoyer</button>
-  <button class="btn btn-outline-secondary ml-4" routerLink="/home">Retour</button>
-</form>
 
+  <div id="participate">
+    <button class="btn btn-success" routerLink="/project-payement/{{project.projectID}}">Participer</button>
+  </div>
 
 </div>
+
 

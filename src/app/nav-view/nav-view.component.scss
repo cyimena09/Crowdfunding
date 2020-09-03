@@ -1,6 +1,8 @@
 
 a{
   color: white;
+    white-space: nowrap;
+
 }
 
 .navigation{
@@ -12,13 +14,27 @@ a{
 }
 
 .user{
+    white-space: nowrap;
+
   width: 500px;
-    margin-right: 25%;
+  margin-right: 25%;
 }
 
 .user a {
   margin-right: 5%;
 }
+
+.user-menu{
+  border-right: solid  1px white;
+  padding-right: 25px;
+  color: white;
+}
+
+#welcome{
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
 .connexion{
   width: 200px;
 }
@@ -27,17 +43,15 @@ a{
   margin-right: 10%;
 }
 
-#identity{
-  font-size: 1.3em;
-}
-
 .icone{
   text-decoration: none;
   font-size: 1.2em;
 }
+.icone:hover{
+  color: #816fab;
+}
 
 .notif{
-
   font-size: 15px;
   position: relative;
   padding: 0 4px 0 4px;
@@ -46,6 +60,5 @@ a{
   right: 7px;
   background-color: red;
   color: white;
-
 }
 

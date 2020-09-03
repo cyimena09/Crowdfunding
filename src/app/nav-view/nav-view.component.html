@@ -17,11 +17,13 @@
     <div class="navigation">
 
           <div class="user">
-            <a *ngIf="currentUser != null" style="color: white" id="identity">Bienvenue <strong>{{currentUser.FirstName}}</strong></a>
-            <a *ngIf="currentUser != null && currentUser.Role == 1" routerLink="/admin_space">Espace Admin</a>
-            <a *ngIf="currentUser != null && currentUser.Role == 0" routerLink="/user_space">Votre espace personnel</a>
-            <a *ngIf="currentUser != null" routerLink="/messagerie" class="icone fas fa-comment-alt" (click)="onRemoveNotif()">
-              <span *ngIf="notif > 0" class="notif">{{notif}}</span></a>
+            <a *ngIf="currentUser != null"  class="user-menu" id="welcome">Bienvenue <strong>{{currentUser.FirstName}}</strong></a>
+            <a *ngIf="currentUser != null && currentUser.Role == 1" class="user-menu" routerLink="/admin_space">Espace Admin</a>
+            <a *ngIf="currentUser != null && currentUser.Role == 0" class="user-menu" routerLink="/user_space">Votre espace personnel</a>
+            <a *ngIf="currentUser != null" class="user-menu icone fas fa-comment-alt" routerLink="/messagerie" (click)="onRemoveNotif()">
+              <span *ngIf="notif > 0 " class="notif">{{notif}}</span></a>
+            <a *ngIf="currentUser != null" class="user-menu icone fas fa-bell" routerLink="">
+              <span *ngIf="notif > 0 " class="notif">{{notif}}</span></a>
           </div>
 
           <div class="connexion">

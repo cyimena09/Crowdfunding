@@ -16,26 +16,26 @@ export class NavViewComponent implements OnInit {
   constructor(private authService: AuthService, private messageService: MessagerieService) { }
 
   ngOnInit(): void {
-
+    this.getMessages();
     this.authService.userSubject.subscribe(
       (data) => {this.currentUser = data; this.getMessages();}
     );
+
+    this.messageService.messageSubject.subscribe(
+      (datae) => {this.messages = datae}
+    )
   }
 
   onRemoveNotif(){
     this.notif = 0;
-
     let nbMessage = this.messages.length
     for(let i = 0 ; i < nbMessage; i++){
       if(this.messages[i].read == 0){
-        this.messages[i].read = 0;
-        this.messageService.updateMessage(this.currentUser.UserID, this.messages[i].messageID, this.messages);
+        this.messages[i].read = 1;
+        this.messageService.updateMessage(this.messages[i]);
       }
-
     }
-
   }
-
 
   onLogout(){
     return this.authService.logout();
@@ -43,17 +43,14 @@ export class NavViewComponent implements OnInit {
 
   getMessages(){
     if(this.currentUser !== null){
-      this.messageService.getMessages(this.currentUser.UserID).subscribe(
-      (data) => {this.messages = data; this.getMessageUnread();}
-      );
+      this.messages = this.messageService.messages
     }
-
   }
 
   getMessageUnread(){
     let cpt = 0
     let nbMessage = this.messages.length
-    for(let i = 0 ; i< nbMessage; i++){
+    for(let i = 0; i< nbMessage; i++){
       if(this.messages[i].read === 0){
         cpt += 1
       }

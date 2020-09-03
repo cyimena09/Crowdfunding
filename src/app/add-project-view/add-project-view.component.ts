@@ -11,7 +11,6 @@ import {AuthService} from "../services/auth/auth.service";
 })
 export class AddProjectViewComponent implements OnInit {
 
-
  constructor(private projectService: ProjectService, private authService: AuthService) { }
 
   ngOnInit(): void {

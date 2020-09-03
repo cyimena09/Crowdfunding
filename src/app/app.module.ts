@@ -22,6 +22,7 @@ import { TransactionHistoricComponent } from './transaction-historic/transaction
 import { ProjectStatusComponent } from './projects/project-status/project-status.component';
 import { MessagerieComponent } from './messagerie/messagerie.component';
 import { TestComponent } from './test/test.component';
+import { ProjectPayementComponent } from './projects/project-payement/project-payement.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TestComponent } from './test/test.component';
     ProjectStatusComponent,
     MessagerieComponent,
     TestComponent,
+    ProjectPayementComponent,
   ],
   imports: [
     BrowserModule,

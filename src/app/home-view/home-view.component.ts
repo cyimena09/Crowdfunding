@@ -5,6 +5,8 @@ import {AuthService} from "../services/auth/auth.service";
 import {CompanyService} from "../services/company/company.service";
 import {UserProjectService} from "../services/user-project/user-project.service";
 import {MessagerieService} from "../services/messagerie/messagerie.service";
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'app-home-view',
@@ -23,27 +25,25 @@ export class HomeViewComponent implements OnInit {
               private projectService: ProjectService,
               private userProjectService: UserProjectService,
               private authService: AuthService,
-              private companyService: CompanyService,
-              private messageService: MessagerieService) { }
+              private companyService: CompanyService) { }
 
 
   ngOnInit(): void {
     this.authService.userSubject.subscribe(
       (data)=> {this.currentUser = data;}
     );
-    this.getUserCompany();
+   this.getUserCompany();
     this.projectService.getProjects();
     this.projectService.projectSubject.subscribe(
       (data) => {this.projects = data; this.getAmount();}
     );
-
   }
 
   getUserCompany(){
     if(this.currentUser !== null){
       this.companyService.getUserCompany().subscribe(
-      (data) => {this.userCompany = data;}
-      );
+        (data) => {this.userCompany = data;}
+        );
     }
   }
 
@@ -70,8 +70,10 @@ export class HomeViewComponent implements OnInit {
     }
   }
 
-  onFuck(){
-    return this.messageService.updateMessage(2,2,2)
+  onHashage(){
+    var hash = CryptoJS.SHA512("test1234=");
+    console.log(hash.toString(CryptoJS.enc.Base64))
+
   }
 
 }

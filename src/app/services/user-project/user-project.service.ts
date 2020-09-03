@@ -6,7 +6,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserProjectService {
 
-  apiURL = 'https://localhost:44370/api/usersprojects'
+
+  apiURL = 'https://apicrowdfunding.emile404.be/api/usersprojects';
 
   constructor(private httpClient: HttpClient) {
     this.getUserProject();

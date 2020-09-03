@@ -1,3 +1,30 @@
+.content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project{
+  border-radius: 10px;
+  margin:  10px 10px 10px 10px;
+  width: 400px;
+}
+
+a{ //project
+  margin-top: 1%;
+  padding: 10px 50px 10px 50px;
+  box-shadow: 0 0 20px #b8abcb;
+
+}
+
+
+.description{
+  overflow: hidden;
+  height: 150px;
+}
+
+
 .progression {
 
   display: flex;
@@ -16,6 +43,7 @@
 }
 
 .align_with_progress-bar{
+   white-space: nowrap;
   position: relative;
   bottom: 3px;
 }
@@ -26,7 +54,4 @@
   padding-top: 10px;
 }
 
-a{
-  margin-top: 1%;
-  border: solid #36245f 1px;
-}
+

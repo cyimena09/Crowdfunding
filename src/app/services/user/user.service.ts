@@ -10,7 +10,8 @@ export class UserService {
 
   users: any = [];
   usersSubject = new Subject();
-  apiURL = 'https://localhost:44370/api/users/';
+
+  apiURL = 'https://apicrowdfunding.emile404.be/api/users/';
 
   constructor(private httpClient: HttpClient, private router: Router) {
     this.getUsers();

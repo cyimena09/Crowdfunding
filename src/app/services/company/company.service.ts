@@ -7,7 +7,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class CompanyService {
 
-  apiURL = 'https://localhost:44370/api/company/usercompany/'
+  apiURL = 'https://apicrowdfunding.emile404.be/api/company/usercompany/';
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 

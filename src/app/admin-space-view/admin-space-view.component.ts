@@ -39,7 +39,8 @@ export class AdminSpaceViewComponent implements OnInit {
   }
 
   onRemoveAccount(){
-    return this.userService.RemoveAccount(this.currentUser.UserID);
+    console.log(this.currentUser.UserID)
+    this.userService.RemoveAccount(this.currentUser.UserID);
   }
 
 }

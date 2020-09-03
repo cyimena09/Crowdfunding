@@ -12,11 +12,13 @@ import {UserSpaceViewComponent} from "./user-space-view/user-space-view.componen
 import {TransactionHistoricComponent} from "./transaction-historic/transaction-historic.component";
 import {MessagerieComponent} from "./messagerie/messagerie.component";
 import {TestComponent} from "./test/test.component";
+import {ProjectPayementComponent} from "./projects/project-payement/project-payement.component";
 
 
 const routes: Routes = [
   {path: 'home', component: HomeViewComponent},
-  {path: 'project_detail/:id', canActivate: [AuthGuardService], component: ProjectDetailComponent},
+  {path: 'project-detail/:id', component: ProjectDetailComponent},
+  {path: 'project-payement/:id', canActivate: [AuthGuardService], component: ProjectPayementComponent},
   {path: 'login', component: LoginViewComponent},
   {path: 'register', component: RegisterViewComponent},
   {path: 'add_project', canActivate: [AuthGuardService], component: AddProjectViewComponent},
